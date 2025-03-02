@@ -10,17 +10,17 @@ df = pd.read_csv('football11.csv')
 df = df.loc[:, ['Name', 'Wage', 'Penalties', 'HeadingAccuracy']]
 
 #берем зп первых 5 игроков с максимальным числом пенальти
-wage_penalties = df.nlargest(player, ['Penalties']).sum()['Wage']
+penaltis = df.nlargest(player, ['Penalties']).sum()['Wage']
 
 #берем зп первых 5 игроков имеющих максимальную точность удара головой
-wage_headingaccuracy = df.nlargest(player, ['HeadingAccuracy']).sum()['Wage']
+head = df.nlargest(player, ['HeadingAccuracy']).sum()['Wage']
 
 #вычесляем ср.зарплату
-wage_penalties = wage_penalties / player
-wage_headingaccuracy = wage_headingaccuracy / player
+penaltis = penaltis / player
+head = head / player
 
 #выводим в какое кол-во раз округляя до 3-х знаков
-print(f'В {wage_penalties / wage_headingaccuracy:.3f} раз средняя зарплата игроков '
+print(f'В {penaltis / head:.3f} раз средняя зарплата игроков '
       f'забивающих максимальночисло пенальти выше средней зарплаты игроков, '
       f'имеющих максимальную точность удара головой')
 
